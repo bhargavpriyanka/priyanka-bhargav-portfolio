@@ -1,0 +1,175 @@
+---
+import IntroLayout from '../layouts/IntroLayout.astro';
+import NavBar from '../components/NavBar.astro';
+---
+
+<IntroLayout>
+  <Fragment slot="navbar">
+    <NavBar />
+  </Fragment>
+
+  <main style="padding: 2rem;">
+   
+    <div class="header-text" aria-hidden="true">
+      <h1 class="page-title">Technical Stack</h1>
+      <p class="page-subtitle">system.getCapabilities() — loading dependencies...</p>
+    </div>
+
+    <div class="skills-grid">
+      <!-- Category: Languages -->
+      <div class="skill-card">
+        <div class="card-header">languages.sh</div>
+        <div class="card-body">
+          <ul>
+            <li>Java</li>
+            <li>Python</li>
+            <li>C / C++</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Category: Frameworks -->
+      <div class="skill-card">
+        <div class="card-header">frameworks_lib.cfg</div>
+        <div class="card-body">
+          <ul>
+            <li>Spring Boot</li>
+            <li>JUnit 5</li>
+            <li>Mockito</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Category: Databases & DevOps -->
+      <div class="skill-card">
+        <div class="card-header">infra_devops.env</div>
+        <div class="card-body">
+          <ul>
+            <li>PostgreSQL</li>
+            <li>Docker</li>
+            <li>Git</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Category: Web -->
+      <div class="skill-card">
+        <div class="card-header">frontend.html</div>
+        <div class="card-body">
+          <ul>
+            <li>HTML5</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Category: Data -->
+      <div class="skill-card">
+        <div class="card-header">data_science.py</div>
+        <div class="card-body">
+          <ul>
+            <li>NumPy</li>
+            <li>Pandas</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Category: Tools -->
+      <div class="skill-card">
+        <div class="card-header">tools_platforms.log</div>
+        <div class="card-body">
+          <ul>
+            <li>Postman</li>
+            <li>Unity</li>
+            <li>Azure Kinect</li>
+            <li>Odoo ERP</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+</IntroLayout>
+
+<style>
+  .header-text {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-family: 'Menlo', 'JetBrains Mono', monospace;
+  }
+
+  .page-title {
+    font-size: 2rem;
+    color: #4e937a;
+    margin-bottom: 0.2rem;
+  }
+
+  .page-subtitle {
+    font-size: 1rem;
+    color: #8fb6aa;
+    font-style: italic;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    font-family: 'Menlo', 'JetBrains Mono', monospace;
+  }
+
+  .skill-card {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .skill-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    border-color: #4e937a;
+  }
+
+  .card-header {
+    background: #f8faf9;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    color: #4e937a;
+    border-bottom: 1px solid #e0e0e0;
+    font-weight: bold;
+  }
+
+  .card-body {
+    padding: 1.5rem;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    font-size: 1rem;
+    color: #2d2d2d;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+  }
+
+  li::before {
+    content: ">";
+    color: #4e937a;
+    margin-right: 10px;
+    font-weight: bold;
+  }
+
+  @media (max-width: 600px) {
+    .skills-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

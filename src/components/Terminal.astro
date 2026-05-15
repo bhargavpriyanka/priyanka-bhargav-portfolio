@@ -1,0 +1,146 @@
+---
+---
+<style>
+  /* Terminal container */
+  .terminal {
+    background-color: #1e1e1e;
+    color: #c5c8c6;
+    font-family: 'Menlo', 'Monaco', 'Consolas', 'Courier New', monospace;
+    font-size: 1rem;
+    width: 700px;
+    height: 400px;
+    margin: 2rem auto;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 0 20px #4e937aaa;
+    user-select: none;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Terminal header (like Mac window buttons) */
+  .terminal-header {
+    display: flex;
+    gap: 0.6rem;
+    margin-bottom: 0.8rem;
+  }
+  .btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+  .btn.close { background: #ff5f56; }
+  .btn.minimize { background: #ffbd2e; }
+  .btn.maximize { background: #27c93f; }
+
+  /* Terminal output area */
+  .output {
+    flex-grow: 1;         /* take remaining space */
+    overflow-y: auto;     /* scroll vertically */
+    white-space: pre-wrap;
+    margin-bottom: 0.8rem;
+  }
+
+  /* Input line with prompt */
+  .input-line {
+    display: flex;
+    align-items: center;
+  }
+  .prompt {
+    color: #4e937a;
+    margin-right: 0.5rem;
+  }
+  input.command-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #c5c8c6;
+    font-family: inherit;
+    font-size: 1rem;
+    flex-grow: 1;
+    caret-color: #4e937a; 
+  }
+  input.command-input::placeholder {
+    color: #555;
+  }
+</style>
+
+<div class="terminal" role="region" aria-label="Terminal window">
+  <div class="terminal-header" aria-hidden="true">
+    <div class="btn close"></div>
+    <div class="btn minimize"></div>
+    <div class="btn maximize"></div>
+  </div>
+
+  <div class="output" id="terminal-output" aria-live="polite" aria-atomic="false"></div>
+
+  <form id="terminal-form" class="input-line" autocomplete="off" spellcheck="false" role="form" aria-label="Terminal command input">
+    <span class="prompt">$</span>
+    <input
+      type="text"
+      id="terminal-input"
+      class="command-input"
+      placeholder="Type a command (e.g. help)"
+      aria-describedby="command-help"
+      autofocus
+      autocomplete="off"
+      spellcheck="false"
+      required
+    />
+    
+  </form>
+</div>
+
+<script is:inline>
+  (() => {
+    const form = document.getElementById('terminal-form');
+    const input = document.getElementById('terminal-input');
+    const output = document.getElementById('terminal-output');
+
+    // Predefined commands & their responses
+    const commands = {
+      help: `Available commands:
+- about: Short bio
+- skills: My developer stack
+- funfact: Quirky fact
+- clear: Clear the terminal
+- help: Show this help message`,
+
+      about: "Hi, I'm Priyanka! I’m a CS grad currently deepening my backend skills and exploring new technologies. Type 'help' to keep exploring.",
+
+      skills: "Languages: Java, Python, C/C++ \nFrameworks: Spring Boot, JUnit 5, Mockito \nDatabases & DevOps: PostgreSQL, Docker, Git \nTools: Postman, Unity, Azure Kinect, Odoo ERP \nWeb: HTML, CSS, JavaScript \n\nvisit skills for the full breakdown",
+
+      funfact: "Quirky fact: I treat every mystery novel like a challenge. I’m always on alert for the breadcrumbs and clues authors leave behind, trying to see if I can figure out the ending before the final chapter."
+    };
+
+    // Helper to print text in the terminal output
+    function printOutput(text) {
+      const newLine = document.createElement('div');
+      newLine.textContent = text;
+      output.appendChild(newLine);
+      output.scrollTop = output.scrollHeight; // scroll to bottom
+    }
+
+    // Handle command input
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const userInput = input.value.trim().toLowerCase();
+
+      // Print the command itself
+      printOutput(`$ ${userInput}`);
+
+      if (userInput === 'clear') {
+        output.textContent = '';
+      } else if (commands[userInput]) {
+        printOutput(commands[userInput]);
+      } else if (userInput.length === 0) {
+        // Do nothing for empty input
+      } else {
+        printOutput(`Command not found: ${userInput}. Type 'help' for list of commands.`);
+      }
+
+      input.value = '';
+    });
+  })();
+</script>

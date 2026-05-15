@@ -1,0 +1,104 @@
+---
+import { base } from 'astro:config/client';
+---
+<nav class="navbar">
+  <div class="brand">{">"} priyanka bhargav</div>
+  <ul class="nav-links">
+    <li><a href={`${base}/`}>home</a></li>
+    <li><a href={`${base}/about`}>about-me</a></li>
+    <li><a href={`${base}/projects`}>projects</a></li>
+    <li><a href={`${base}/skills`}>skills</a></li>
+    <li><a href={`${base}/experience`}>experience</a></li>
+    <li><a href={`${base}/fun`}>fun</a></li>
+    <li><a href={`${base}/contact`}>contact</a></li>
+  </ul>
+</nav>
+
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  .navbar {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    background: white;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    overflow-x: auto;
+  }
+
+  .brand {
+    flex-shrink: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #2d2d2d;
+    white-space: nowrap;
+  }
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+
+  .nav-links li {
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-links li a {
+    text-decoration: none;
+    color: #2d2d2d;
+    font-size: 0.9rem;
+    padding: 0.2rem 0;
+    white-space: nowrap;
+    position: relative;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .nav-links li a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #00aa77;
+    transition: width 0.2s ease;
+  }
+
+  .nav-links li a:hover::after {
+    width: 100%;
+  }
+
+  .nav-links li a:hover {
+    color: #00aa77;
+  }
+
+  /* Hide scrollbar but keep scroll */
+  .nav-links::-webkit-scrollbar {
+    display: none;
+  }
+  .nav-links {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  @media (max-width: 768px) {
+    .nav-links {
+      gap: 0.7rem;
+    }
+  }
+</style>

@@ -1,0 +1,176 @@
+---
+import IntroLayout from '../layouts/IntroLayout.astro';
+import NavBar from '../components/NavBar.astro';
+import { base } from 'astro:config/client';
+
+
+const projects = [
+  {
+    title: "BenchMark — Workout Logger",
+    subtitle: "REST API | Java 21, Spring Boot 3, JWT, PostgreSQL, Docker",
+    description: "Developed a RESTful workout logging API enabling users to track gym sessions and monitor strength progress. Implemented JWT-based authentication with Spring Security and designed a normalized PostgreSQL schema with six entities. Achieved 100% service layer coverage using JUnit 5 and Mockito.",
+    tags: ["Java", "Spring Security", "PostgreSQL", "Docker", "JUnit 5"],
+    github: "https://github.com/bhargavpriyanka/BenchMark"
+  },
+  {
+    title: "BudgetCore API",
+    subtitle: "Java, Spring Boot, PostgreSQL, Docker",
+    description: "A RESTful Budget Tracking API following a layered architecture. Features category management and real-time over/under budget detection. Validated all endpoints via Postman and ensured 100% service layer coverage across all methods and branches.",
+    tags: ["Java", "Spring Boot", "PostgreSQL", "REST API", "Mockito"],
+    github: "https://github.com/bhargavpriyanka/BudgetCore"
+  }
+];
+---
+
+<IntroLayout>
+  <Fragment slot="navbar">
+    <NavBar />
+  </Fragment>
+
+  <main style="padding: 2rem;">
+    <div class="header-text" aria-hidden="true">
+      <h1 class="page-title">Projects</h1>
+      <p class="page-subtitle">git log --oneline — viewing active repositories...</p>
+    </div>
+
+    <div class="projects-container">
+      {projects.map((project) => (
+        <div class="project-card">
+          <div class="card-top">
+             <span class="folder-icon">📂</span>
+             <h2 class="project-title">{project.title}</h2>
+          </div>
+          
+          <p class="project-subtitle">{project.subtitle}</p>
+          <p class="project-description">{project.description}</p>
+          
+          <div class="tags-container">
+            {project.tags.map(tag => (
+              <span class="tag">{tag}</span>
+            ))}
+          </div>
+
+          <a href={project.github} target="_blank" rel="noopener noreferrer" class="github-link">
+            <img src={`${base}/images/github.png`} alt="GitHub" class="link-icon" />
+            view_source_code
+          </a>
+        </div>
+      ))}
+    </div>
+  </main>
+</IntroLayout>
+
+<style>
+  .header-text {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-family: 'Menlo', 'JetBrains Mono', monospace;
+  }
+
+  .page-title {
+    font-size: 2rem;
+    color: #4e937a;
+    margin-bottom: 0.2rem;
+  }
+
+  .page-subtitle {
+    font-size: 1rem;
+    color: #8fb6aa;
+    font-style: italic;
+  }
+
+  .projects-container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    font-family: 'Menlo', 'JetBrains Mono', monospace;
+  }
+
+  .project-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    padding: 2rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .project-card:hover {
+    border-color: #4e937a;
+    box-shadow: 8px 8px 0px rgba(78, 147, 122, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .card-top {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .project-title {
+    font-size: 1.4rem;
+    color: #2d2d2d;
+    margin: 0;
+  }
+
+  .project-subtitle {
+    font-size: 0.9rem;
+    color: #4e937a;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .project-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 1.5rem;
+  }
+
+  .tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 2rem;
+  }
+
+  .tag {
+    background: #f0f4f2;
+    color: #4e937a;
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    border-radius: 4px;
+    border: 1px solid #dce6e1;
+  }
+
+  .github-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #2d2d2d;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: 1px solid #2d2d2d;
+    padding: 0.6rem 1.2rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
+
+  .github-link:hover {
+    background: #2d2d2d;
+    color: #fff;
+  }
+
+  .github-link:hover .link-icon {
+    filter: invert(1);
+  }
+
+  .link-icon {
+    width: 18px;
+    height: 18px;
+  }
+</style>

@@ -1,0 +1,228 @@
+---
+import IntroLayout from '../layouts/IntroLayout.astro';
+import NavBar from '../components/NavBar.astro';
+---
+
+<IntroLayout>
+  <Fragment slot="navbar">
+    <NavBar />
+  </Fragment>
+
+  <main style="padding: 2rem;">
+    <!-- Theme Header -->
+    <div class="header-text" aria-hidden="true">
+      <h1 class="page-title">Establish Connection</h1>
+      <p class="page-subtitle">ping -c 4 priyanka_bhargav... connection stable.</p>
+    </div>
+
+    <div class="contact-container">
+      <div class="terminal-box">
+        <!-- Terminal Title Bar -->
+        <div class="terminal-header">
+          <div class="dots">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <span class="terminal-tab">messenger.sh</span>
+        </div>
+        
+        <div class="terminal-content">
+          <!-- Command 1 -->
+          <p class="command">> sudo connect --target production</p>
+          <p class="response">Searching for active channels...</p>
+          
+          <!-- Contact Links -->
+          <div class="contact-links">
+            <a href="https://www.linkedin.com/in/priyanka-bhargav-b97b6b253/" target="_blank" rel="noopener noreferrer" class="channel">
+              <span class="label">[ LinkedIn ]</span>
+              <span class="desc">Professional networking & inquiries.</span>
+            </a>
+
+            <a href="https://github.com/bhargavpriyanka" target="_blank" rel="noopener noreferrer" class="channel">
+              <span class="label">[ GitHub ]</span>
+              <span class="desc">Source code & project contributions.</span>
+            </a>
+          </div>
+
+          <!-- Command 2 -->
+          <p class="command">> status --check</p>
+          <p class="response">Connection established. Waiting for user input...</p>
+          
+          <!-- Footer Status -->
+          <div class="status-footer">
+            <span class="pulse"></span> 
+            <span>System Status: Online & Accepting Opportunities</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</IntroLayout>
+
+<style>
+ 
+  .header-text {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-family: 'Menlo', 'JetBrains Mono', monospace;
+    user-select: none;
+  }
+
+  .page-title {
+    font-size: 2rem;
+    color: #4e937a;
+    margin-bottom: 0.2rem;
+  }
+
+  .page-subtitle {
+    font-size: 1rem;
+    color: #8fb6aa;
+    font-style: italic;
+  }
+
+  .contact-container {
+    max-width: 700px;
+    margin: 0 auto;
+    font-family: 'Menlo', 'JetBrains Mono', monospace;
+  }
+
+
+  .terminal-box {
+    background: #1e1e1e;
+    color: #d4d4d4;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    border: 1px solid #333;
+  }
+
+  .terminal-header {
+    background: #333;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .dots {
+    display: flex;
+    gap: 8px;
+  }
+
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  .red { background: #ff5f56; }
+  .yellow { background: #ffbd2e; }
+  .green { background: #27c93f; }
+
+  .terminal-tab {
+    margin-left: 1.5rem;
+    font-size: 0.8rem;
+    color: #888;
+    letter-spacing: 1px;
+  }
+
+  .terminal-content {
+    padding: 2.5rem;
+    line-height: 1.6;
+  }
+
+
+  .command {
+    color: #4e937a;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+
+  .command::before {
+    content: "priyanka@portfolio:~$ ";
+    color: #8fb6aa;
+    font-weight: normal;
+  }
+
+  .response {
+    color: #d4d4d4;
+    margin-bottom: 2rem;
+  }
+
+  /* Contact Links */
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .channel {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: transform 0.2s ease;
+  }
+
+  .channel:hover {
+    transform: translateX(8px);
+  }
+
+  .label {
+    color: #4e937a;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-right: 12px;
+  }
+
+  .desc {
+    color: #888;
+    font-size: 0.9rem;
+  }
+
+
+  .status-footer {
+    border-top: 1px solid #333;
+    padding-top: 1.5rem;
+    font-size: 0.85rem;
+    color: #8fb6aa;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .pulse {
+    width: 10px;
+    height: 10px;
+    background: #4e937a;
+    border-radius: 50%;
+    box-shadow: 0 0 0 rgba(78, 147, 122, 0.4);
+    animation: pulse-animation 2s infinite;
+  }
+
+  @keyframes pulse-animation {
+    0% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(78, 147, 122, 0.7);
+    }
+    70% {
+      transform: scale(1);
+      box-shadow: 0 0 0 6px rgba(78, 147, 122, 0);
+    }
+    100% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(78, 147, 122, 0);
+    }
+  }
+
+
+  @media (max-width: 600px) {
+    .terminal-content {
+      padding: 1.5rem;
+    }
+    .page-title {
+      font-size: 1.6rem;
+    }
+  }
+</style>

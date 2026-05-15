@@ -1,0 +1,214 @@
+---
+import IntroLayout from '../layouts/IntroLayout.astro';
+import NavBar from '../components/NavBar.astro';
+
+const experiences = [
+  {
+    company: "U Plus Education",
+    role: "Data Analyst & Web Assistant",
+    location: "Markham, ON",
+    duration: "Nov 2025 – Present",
+    description: [
+      "Built an end-to-end ETL pipeline using pandas to clean and standardize immigration datasets, validating nulls and outliers before loading into SQLite.",
+      "Developed an interactive Plotly Dash dashboard backed by a FastAPI REST layer for real-time data retrieval and summary statistics.",
+      "Trained and compared Decision Tree and Random Forest models to forecast immigration volumes, evaluating performance with MAE and R².",
+      "Redesigned community webpages in Figma, improving visual hierarchy and brand alignment."
+    ],
+    skills: ["Python", "Pandas", "FastAPI", "Plotly Dash", "SQLite", "Figma"]
+  },
+  {
+    company: "SaTS Lab, York University",
+    role: "Software Engineer",
+    location: "Toronto, ON",
+    duration: "May – Aug 2023",
+    description: [
+      "Independently built a real-time body tracking system in Unity/C# using Azure Kinect SDK for portable clinical applications.",
+      "Implemented joint-angle analysis for various mobility exercises, providing real-time corrective cues and rep counting.",
+      "Resolved multi-person tracking conflicts by engineering a custom nearest-subject filter."
+    ],
+    skills: ["C#", "Unity", "Azure Kinect SDK", "Real-time Tracking"]
+  },
+  {
+    company: "Trinity Communication Services Ltd",
+    role: "Software Developer Co-op",
+    location: "Brampton, ON",
+    duration: "Sept – Dec 2022",
+    description: [
+      "Co-developed an Odoo ERP Material Request module, digitizing manual paper logs for real-time inventory visibility.",
+      "Integrated module across Inventory, Projects, and Sales to automate stock notifications and streamline reordering.",
+      "Authored technical documentation for the warehouse team to ensure independent system operation."
+    ],
+    skills: ["Python", "Odoo ERP", "PostgreSQL", "XML", "Inventory Management"]
+  }
+];
+---
+
+<IntroLayout>
+  <Fragment slot="navbar">
+    <NavBar />
+  </Fragment>
+
+  <main class="experience-page">
+    <div class="header">
+      <h1 class="title">Experience.log</h1>
+      <p class="subtitle">Executing query: <code>SELECT * FROM career_history;</code></p>
+    </div>
+
+    <div class="timeline">
+      {experiences.map((exp) => (
+        <div class="exp-card">
+          <div class="card-header">
+            <div class="title-area">
+              <h2 class="role">{exp.role}</h2>
+              <h3 class="company">{exp.company}</h3>
+            </div>
+            <div class="meta-area">
+              <span class="duration">{exp.duration}</span>
+              <span class="location">{exp.location}</span>
+            </div>
+          </div>
+          
+          <ul class="details">
+            {exp.description.map((bullet) => (
+              <li>{bullet}</li>
+            ))}
+          </ul>
+
+          <div class="skills-row">
+            {exp.skills.map((skill) => (
+              <span class="skill-tag">{skill}</span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </main>
+</IntroLayout>
+
+<style>
+  .experience-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    font-family: 'Menlo', 'JetBrains Mono', monospace;
+  }
+
+  .header {
+    margin-bottom: 4rem;
+    border-left: 4px solid #4e937a;
+    padding-left: 1.5rem;
+  }
+
+  .title {
+    font-size: 2.5rem;
+    color: #2d2d2d;
+    margin: 0;
+  }
+
+  .subtitle {
+    color: #666;
+    margin-top: 0.5rem;
+  }
+
+  .subtitle code {
+    color: #4e937a;
+  }
+
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .exp-card {
+    position: relative;
+    padding: 2rem;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .exp-card:hover {
+    border-color: #4e937a;
+    box-shadow: 8px 8px 0px rgba(78, 147, 122, 0.1);
+    transform: translateY(-4px);
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px dashed #eee;
+    padding-bottom: 1rem;
+  }
+
+  .role {
+    font-size: 1.4rem;
+    color: #2d2d2d;
+    margin: 0;
+  }
+
+  .company {
+    font-size: 1.1rem;
+    color: #4e937a;
+    margin: 0.2rem 0 0 0;
+    font-weight: 500;
+  }
+
+  .meta-area {
+    text-align: right;
+    font-size: 0.85rem;
+    color: #888;
+  }
+
+  .duration {
+    display: block;
+    color: #2d2d2d;
+    font-weight: bold;
+    margin-bottom: 0.2rem;
+  }
+
+  .details {
+    padding-left: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .details li {
+    font-size: 0.95rem;
+    color: #444;
+    line-height: 1.6;
+    margin-bottom: 0.8rem;
+    list-style-type: "→ ";
+  }
+
+  .skills-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .skill-tag {
+    font-size: 0.75rem;
+    background: #f0f4f2;
+    color: #3d7a65;
+    padding: 4px 10px;
+    border-radius: 4px;
+    border: 1px solid #dce6e1;
+  }
+
+  /* Responsive styling */
+  @media (max-width: 768px) {
+    .card-header {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .meta-area {
+      text-align: left;
+    }
+    .title {
+      font-size: 2rem;
+    }
+  }
+</style>

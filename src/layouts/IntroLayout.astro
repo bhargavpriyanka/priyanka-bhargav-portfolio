@@ -1,0 +1,72 @@
+---
+const navbar = Astro.slots.navbar;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Priyanka Bhargav</title>
+    <link rel="icon" type="image/png" href="/images/PriyankaImage.png" />
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
+
+      html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        background: white;
+        font-family: 'JetBrains Mono', monospace;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        background: white;
+      }
+
+      .navbar {
+        width: 100%;
+      }
+
+      .content {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+      }
+
+      /* Cursor styling */
+      .cursor {
+        display: inline-block;
+        width: 2px;
+        height: 1.2em;
+        background-color: #2d2d2d;
+        margin-left: 3px;
+        vertical-align: bottom;
+        animation: blink 1s steps(2, start) infinite;
+      }
+
+      @keyframes blink {
+        0%, 50% {
+          background-color: #2d2d2d;
+        }
+        50.1%, 100% {
+          background-color: transparent;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      {navbar && <div class="navbar"><slot name="navbar" /></div>}
+      <main class="content">
+        <slot />
+      </main>
+    </div>
+  </body>
+</html>
+

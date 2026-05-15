@@ -1,0 +1,80 @@
+---
+import IntroLayout from '../layouts/IntroLayout.astro';
+import NavBar from '../components/NavBar.astro';
+import Terminal from '../components/Terminal.astro';
+import Spotify from '../components/Spotify.astro';
+---
+
+<IntroLayout>
+  <Fragment slot="navbar">
+    <NavBar />
+  </Fragment>
+
+  <main style="padding: 2rem;">
+    <div class="terminal-header-text" aria-hidden="true">
+      <h1 class="terminal-title">Priyanka’s Terminal</h1>
+      <p class="terminal-subtitle">Type <code>help</code> to see available commands and explore!</p>
+    </div>
+
+    <Terminal />
+
+    <!-- Spotify  -->
+    <div class="spotify-header-text" aria-hidden="true">
+      <h1 class="spotify-title">Priyanka’s Codebeats</h1>
+      <p class="spotify-subtitle">Tunes compiled for your coding flow — press play, write code, repeat.</p>
+    </div>
+
+    <Spotify />
+  </main>
+</IntroLayout>
+
+<style>
+  .terminal-header-text {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-family: 'Menlo', monospace;
+    user-select: none;
+  }
+
+  .terminal-title {
+    font-size: 2rem;
+    color: #4e937a;
+    margin-bottom: 0.2rem;
+  }
+
+  .terminal-subtitle {
+    font-size: 1rem;
+    color: #8fb6aa;
+    font-style: italic;
+  }
+
+  .spotify-header-text {
+    text-align: center;
+    margin: 3rem auto 1.5rem;
+    font-family: 'Menlo', monospace;
+    user-select: none;
+  }
+
+  .spotify-title {
+    font-size: 2rem;
+    color: #4e937a;
+    margin-bottom: 0.2rem;
+  }
+
+  .spotify-subtitle {
+    font-size: 1rem;
+    color: #8fb6aa;
+    font-style: italic;
+  }
+
+  code {
+    background-color: #222;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-family: 'Menlo', monospace;
+  }
+</style>
+
+
+
+

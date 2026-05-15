@@ -1,0 +1,200 @@
+---
+import IntroLayout from '../layouts/IntroLayout.astro';
+import NavBar from '../components/NavBar.astro';
+import { base } from 'astro:config/client';
+---
+
+<IntroLayout>
+  <Fragment slot="navbar">
+    <NavBar />
+  </Fragment>
+
+  <div class="intro-container">
+    <div class="text-block">
+      <!-- Added semantic classes for better styling control -->
+      <div id="line1" class="line-primary"></div>
+      <div id="line2" class="line-secondary"></div>
+      <div id="line3" class="line-detail"></div>
+ 
+      <div id="social-links" class="social-links" style="display:none;">
+        <a href="https://www.linkedin.com/in/priyanka-bhargav-b97b6b253/" target="_blank" aria-label="LinkedIn" rel="noopener noreferrer">
+          <img src={`${base}/images/linkedin.png`} alt="LinkedIn" />
+        </a>
+        <a href="https://github.com/bhargavpriyanka" target="_blank" aria-label="GitHub" rel="noopener noreferrer">
+          <img src={`${base}/images/github.png`} alt="GitHub" />
+        </a>
+      </div>
+    </div>
+    
+    <div class="image-wrapper">
+      <img src={`${base}/images/PriyankaImage.png`} alt="Priyanka Bhargav" class="profile-image" />
+    </div>
+  </div>
+
+  <script type="module" is:inline>
+    const line1 = document.getElementById("line1");
+    const line2 = document.getElementById("line2");
+    const line3 = document.getElementById("line3");
+    const socialLinks = document.getElementById("social-links");
+
+    function addCursor(el) {
+      const cursor = document.createElement("span");
+      cursor.classList.add("cursor");
+      el.appendChild(cursor);
+    }
+
+    function typeText(el, text, delay, next) {
+      let index = 0;
+      addCursor(el);
+      function type() {
+        if (index < text.length) {
+          const cursor = el.querySelector(".cursor");
+          cursor.insertAdjacentText("beforebegin", text[index]);
+          index++;
+          setTimeout(type, delay);
+        } else {
+          if (next) setTimeout(next, 600);
+        }
+      }
+      type();
+    }
+
+    function backspaceText(el, count, delay, next) {
+      let currentCount = count;
+      function backspace() {
+        if (currentCount > 0) {
+          const cursor = el.querySelector(".cursor");
+          const text = el.textContent;
+          el.textContent = text.slice(0, -1);
+          el.appendChild(cursor);
+          currentCount--;
+          setTimeout(backspace, delay);
+        } else {
+          if (next) setTimeout(next, 400);
+        }
+      }
+      backspace();
+    }
+
+    const text1 = "Hello World!";
+    const text2Full = "I am Priyanka Bhargav!";
+    const nameToReplace = "Priyanka Bhargav!";
+    const text2Replace = "a software developer.";
+    const text3 = "Computer Science graduate from York University.";
+
+    function startTyping() {
+      typeText(line1, text1, 80, () => {
+        typeText(line2, text2Full, 80, () => {
+          typeText(line3, text3, 50, () => {
+            socialLinks.style.display = "flex";
+            setTimeout(() => {
+              backspaceText(line2, nameToReplace.length, 40, () => {
+                typeText(line2, text2Replace, 80);
+              });
+            }, 2500);
+          });
+        });
+      });
+    }
+
+    window.addEventListener("DOMContentLoaded", startTyping);
+  </script>
+
+  <style>
+    .intro-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5rem;
+      padding: 4rem 2rem;
+      min-height: 70vh;
+      flex-wrap: wrap;
+    }
+
+    .text-block {
+      font-family: 'Menlo', 'JetBrains Mono', monospace;
+      display: flex;
+      flex-direction: column;
+      max-width: 550px;
+    }
+
+    /* Hierarchy-based Font Sizes */
+    .line-primary {
+      font-size: 2.8rem;
+      font-weight: bold;
+      color: #2d2d2d;
+      margin-bottom: 0.5rem;
+    }
+
+    .line-secondary {
+      font-size: 1.6rem;
+      color: #4e937a; 
+      font-weight: 600;
+      min-height: 1.5em; 
+    }
+
+    .line-detail {
+      font-size: 1rem;
+      color: #555;
+      margin-top: 1.2rem;
+      line-height: 1.6;
+      font-weight: 400;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 3px;
+      height: 1em;
+      background-color: #4e937a;
+      margin-left: 5px;
+      animation: blink 1s steps(2, start) infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .image-wrapper {
+      position: relative;
+    }
+
+    .profile-image {
+      max-width: 340px;
+      height: auto;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+
+    .social-links {
+      margin-top: 2rem;
+      gap: 1.5rem;
+      display: flex;
+    }
+
+    .social-links a img {
+      width: 28px;
+      height: 28px;
+      opacity: 0.6;
+      transition: all 0.3s ease;
+    }
+
+    .social-links a:hover img {
+      opacity: 1;
+      transform: translateY(-3px);
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+      .intro-container {
+        gap: 2.5rem;
+        text-align: center;
+        padding: 2rem 1rem;
+      }
+      .line-primary { font-size: 2.2rem; }
+      .line-secondary { font-size: 1.3rem; }
+      .profile-image { max-width: 260px; }
+      .social-links { justify-content: center; }
+    }
+  </style>
+</IntroLayout>

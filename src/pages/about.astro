@@ -1,0 +1,140 @@
+---
+import IntroLayout from '../layouts/IntroLayout.astro';
+import NavBar from '../components/NavBar.astro';
+import { base } from 'astro:config/client';
+---
+
+<IntroLayout>
+  <Fragment slot="navbar">
+    <NavBar />
+  </Fragment>
+
+  <main style="padding: 2rem;">
+
+    <div class="header-text" aria-hidden="true">
+      <h1 class="page-title">About Priyanka</h1>
+      <p class="page-subtitle">Executing bio.sh — initializing personal background...</p>
+    </div>
+
+    <div class="content-container">
+      <div class="bio-card">
+        <div class="bio-text">
+          <p>
+            Hi, I'm Priyanka! I’m a Computer Science graduate from York University who loves the moment a hard problem finally clicks.
+          </p>
+
+          <p>
+            Through my co-ops and projects, I’ve had the chance to work across various areas of software, including data analysis, ERP systems, and motion tracking. This gave me a solid foundation and a lot of perspective on how software gets built in the real world. Lately, I’ve been sharpening my backend skills with <span class="highlight">Java and Spring Boot</span>, and I have my sights set on diving into <span class="highlight">AI integration</span> next.
+          </p>
+
+          <p>
+            What stays consistent is my drive to figure things out. I’m a big believer in self-driven learning, whether I’m mastering a new framework on my own or diving deep into a mystery novel to solve it before the final chapter. For me, there is always something new to improve or a more efficient way to build, and I love finding those opportunities wherever I’m working.
+          </p>
+
+          <p>
+            When I'm not at my desk, you'll find me at the gym or out on a hike.
+          </p>
+
+          <div class="status-box">
+            <p><strong>Status:</strong> Open to Software Development and Data Analyst roles.</p>
+            <p><strong>Action:</strong> <a href={`${base}/contact`} class="connect-link">Let's connect!</a></p>
+          </div>
+        </div>
+        
+        <div class="image-wrapper">
+           <img src={`${base}/images/PriyankaImage.png`} alt="Priyanka Bhargav" class="profile-image" />
+        </div>
+      </div>
+    </div>
+  </main>
+</IntroLayout>
+
+<style>
+  
+  .header-text {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-family: 'Menlo', 'JetBrains Mono', monospace;
+    user-select: none;
+  }
+
+  .page-title {
+    font-size: 2rem;
+    color: #4e937a; 
+    margin-bottom: 0.2rem;
+  }
+
+  .page-subtitle {
+    font-size: 1rem;
+    color: #8fb6aa;
+    font-style: italic;
+  }
+
+  .content-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    font-family: 'Menlo', 'JetBrains Mono', monospace; 
+  }
+
+  .bio-card {
+    display: flex;
+    gap: 4rem;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .bio-text {
+    flex: 1;
+    min-width: 320px;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #2d2d2d;
+  }
+
+  .bio-text p {
+    margin-bottom: 1.5rem;
+  }
+
+  .highlight {
+    color: #4e937a;
+    font-weight: bold;
+  }
+
+  .status-box {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: #f8faf9;
+    border-left: 4px solid #4e937a;
+    font-size: 0.95rem;
+  }
+
+  .connect-link {
+    color: #4e937a;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .image-wrapper {
+    flex-shrink: 0;
+  }
+
+  .profile-image {
+    max-width: 350px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 10px 10px 0px #8fb6aa; 
+  }
+
+  @media (max-width: 768px) {
+    .bio-card {
+      flex-direction: column-reverse;
+      align-items: center;
+      text-align: left;
+    }
+    
+    .profile-image {
+      max-width: 100%;
+    }
+  }
+</style>
